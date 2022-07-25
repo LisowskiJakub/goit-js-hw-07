@@ -18,15 +18,14 @@ galleryItems.forEach(item => {
 )
 gallery.addEventListener('click', e => {
     e.preventDefault();
+    if (e.target.nodeName !== 'IMG') {
+		return;
+	}
+    
     const selectedImg = e.target.getAttribute('src');
-
-
-    const instance = basicLightbox.create(`
-    <img src='${selectedImg}' width="800" height="600">
-`)
-    instance.show()
+    const instance = basicLightbox.create(`<img src='${selectedImg}' width="800" height="600">`);
     
-    
+    instance.show()     
     gallery.addEventListener('keydown', e => {
         if (e.key == "Escape") {
             instance.close();
