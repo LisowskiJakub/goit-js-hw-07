@@ -6,21 +6,14 @@ console.log(galleryItems);
 const gallery = document.querySelector('.gallery');
 
 galleryItems.forEach(item => {
-    const markup = `<a class="gallery__item" href="${item.original}">
-    <img class="gallery__image" src="${item.original}" data-source="${item.original}" alt="${item.description}"/>
+  const markup = `<a class="gallery__item" href="${item.original}">
+    <img class="gallery__image" src="${item.original}" data-source="${item.original}" alt="${item.description}" title="${item.description}"/>
     </a> `
-   
 
-    gallery.insertAdjacentHTML('beforeend', markup);
+
+  gallery.insertAdjacentHTML('beforeend', markup);
 
 })
-gallery.addEventListener('click', e => {
-    e.preventDefault();
-    if (e.target.nodeName !== 'IMG') {
-		return;
-	}   
-    let lightbox = new SimpleLightbox('.gallery a',);
+new SimpleLightbox(".gallery a", { captionDelay: 250});
 
-      
-  });
 
