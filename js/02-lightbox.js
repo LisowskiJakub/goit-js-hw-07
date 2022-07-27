@@ -14,6 +14,10 @@ galleryItems.forEach(item => {
   gallery.insertAdjacentHTML('beforeend', markup);
 
 })
-new SimpleLightbox(".gallery a", { captionDelay: 250});
+new SimpleLightbox(".gallery a", { 
+  captionDelay: 1250,
+  overlayOpacity:0.97
+
+});
 
 
