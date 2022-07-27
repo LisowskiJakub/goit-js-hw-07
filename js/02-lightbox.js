@@ -15,7 +15,7 @@ galleryItems.forEach(item => {
 
 })
 new SimpleLightbox(".gallery a", { 
-  captionDelay: 1250,
+  captionDelay: 250,
   overlayOpacity:0.97
 
 });
