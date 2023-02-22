@@ -23,12 +23,14 @@ const selectPicture=(e)=>{
     }
      const instance = basicLightbox.create(`<img src="${e.target.dataset.source}" width="800" height="600">`)
 instance.show()
-gallery.addEventListener('keydown',e=>{
+const close=e=>{
     if(e.key==='Escape'){
         instance.close();
           // gallery.removeEventListener('keydown',e) czy to potrzebne?
     }
-})
+
+}
+gallery.addEventListener('keydown',close);
 
 }
 gallery.insertAdjacentHTML('beforeend',markup);
