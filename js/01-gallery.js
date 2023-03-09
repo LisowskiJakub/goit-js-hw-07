@@ -1,10 +1,10 @@
 import { galleryItems } from './gallery-items.js';
 
-const {log} = console;
+const { log } = console;
 // Change code below this line
 const gallery = document.querySelector('.gallery');
 const markup = galleryItems
-.map((item)=>`<div class="gallery__item">
+  .map((item) => `<div class="gallery__item">
 <a class="gallery__link" href="${item.original}">
   <img
     class="gallery__image"
@@ -14,24 +14,25 @@ const markup = galleryItems
   />
 </a>
 </div>`)
-.join('')
+  .join('')
 
-const selectPicture=(e)=>{
-    e.preventDefault();
-    if (e.target.nodeName !== "IMG"){
-        return ;
+const selectPicture = (e) => {
+  e.preventDefault();
+  if (e.target.nodeName !== "IMG") {
+    return;
+  }
+
+  const instance = basicLightbox.create(`<img src="${e.target.dataset.source}" width="800" height="600">`)
+  instance.show()
+  const close = e => {
+    if (e.key === 'Escape') {
+      instance.close();
+      gallery.removeEventListener('keydown', close);
     }
-     const instance = basicLightbox.create(`<img src="${e.target.dataset.source}" width="800" height="600">`)
-instance.show()
-const close=e=>{
-    if(e.key==='Escape'){
-        instance.close();
-          // gallery.removeEventListener('keydown',e) czy to potrzebne?
-    }
 
-}
-gallery.addEventListener('keydown',close);
+  }
 
+  gallery.addEventListener('keydown', close);
 }
-gallery.insertAdjacentHTML('beforeend',markup);
+gallery.insertAdjacentHTML('beforeend', markup);
 gallery.addEventListener('click', selectPicture);
