@@ -18,21 +18,16 @@ const markup = galleryItems
 
 const selectPicture = (e) => {
   e.preventDefault();
-  if (e.target.nodeName !== "IMG") {
-    return;
-  }
-
-  const instance = basicLightbox.create(`<img src="${e.target.dataset.source}" width="800" height="600">`)
-  instance.show()
-  const close = e => {
-    if (e.key === 'Escape') {
-      instance.close();
-      gallery.removeEventListener('keydown', close);
-    }
-
-  }
-
-  gallery.addEventListener('keydown', close);
+  if (e.target.nodeName !== "IMG") return;
+  console.log('click')
+  const instance = basicLightbox.create(`<img src="${e.target.dataset.source}" width="800" height="600">`, {
+    onShow: (instance) => {
+      document.addEventListener('keydown', e => {
+        if (e.key === 'Escape') instance.close();
+      })
+    },
+  })
+  instance.show();
 }
 gallery.insertAdjacentHTML('beforeend', markup);
 gallery.addEventListener('click', selectPicture);
